@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>csrf-jwt-test</title>
+</head>
+<body>
+<button id="auth">authenticate</button>
+<button id="test">test</button>
+<script>
+  const defaultOptions = {credentials: 'same-origin'};
+  const CSRF_TOKEN_KEY = 'csrf';
+  const authBtn = document.getElementById('auth');
+  const testBtn = document.getElementById('test');
+  authBtn.addEventListener('click', authenticate);
+  testBtn.addEventListener('click', testAuthentication);
+
+  function authenticate() {
+    fetch('/token', {...defaultOptions})
+      .then(res => res.json())
+      .then(({csrfToken}) => localStorage.setItem(CSRF_TOKEN_KEY, csrfToken))
+      .catch(err => console.error(err))
+    ;
+  }
+
+  function testAuthentication() {
+    const csrfToken = localStorage.getItem(CSRF_TOKEN_KEY);
+    let headers;
+    if (csrfToken) {
+      headers = new Headers();
+      headers.append('X-CSRF-TOKEN', csrfToken);
+    }
+
+    fetch('/test', {headers, ...defaultOptions})
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
+    ;
+  }
+</script>
+</body>
+</html>

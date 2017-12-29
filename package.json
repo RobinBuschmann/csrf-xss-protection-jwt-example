@@ -1,0 +1,30 @@
+{
+  "name": "csrf-xss-protection-jwt-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --require ts-node/register index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@etianen/base-error": "^0.2.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "strong-error-handler": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.11.0",
+    "@types/jsonwebtoken": "^7.2.5",
+    "@types/node": "^8.5.2",
+    "@types/passport": "^0.4.2",
+    "@types/passport-jwt": "^3.0.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  }
+}
